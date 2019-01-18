@@ -6,3 +6,9 @@
     border: 3px solid #ccc;
     box-shadow: 3px 3px #ccc;
 }
+
+@media (min-width:500px) {
+    .Person {
+        width: 450px;
+    }
+}
