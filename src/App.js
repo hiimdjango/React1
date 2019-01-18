@@ -62,7 +62,7 @@ class App extends Component {
     
     let person = null;
     if (this.state.personShow === true) {
-      //Rendering multiple Person component using .map() git
+      //Rendering multiple Person component using .map()
       person = (
         <div>
           {this.state.persons.map((person,index) => {
