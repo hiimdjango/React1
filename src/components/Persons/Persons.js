@@ -1,6 +1,7 @@
 import React from 'react';
 import Person from './Person/Person';
 
+//Map through the state.persons in App.js and create Person components.
 const persons = (props) => props.persons.map((person,index) => {
     return <Person 
       name={person.name}

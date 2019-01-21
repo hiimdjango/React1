@@ -14,25 +14,30 @@ class App extends Component {
     ],
     personShow : false
   }
-  
+  //Remove an element from the state.persons using it's index
   deletePersonHandler = (personIndex) => {
     const persons = [...this.state.persons];
     persons.splice(personIndex,1);
     this.setState({persons:persons});
   }
+
+  //update the person's name using the id and the input data
   changedNameHandler = ( event,id ) => {
+    //map trough the persons table till Id matches
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
     });
-
+    //create a new person object spreading the object in the state and update the name with the input value
     const person = {...this.state.persons[personIndex]};
     person.name = event.target.value; 
-
+    //spread the persons array and update it with the new person object updated
     const persons = [...this.state.persons];
     persons[personIndex] = person;
-
+    //update the state.persons using the updated array
     this.setState({persons:persons });
   }
+
+  //Show / Unshow the list of persons
   tooglePersonHandler = () => {
     const personShown = this.state.personShow;
     this.setState({personShow:!personShown});
