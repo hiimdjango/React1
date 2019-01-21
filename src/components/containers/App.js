@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../Persons/Persons';
 import Cockpit from '../Cockpit/Cockpit';
+import withClass from '../hoc/withClass';
 
 class App extends Component {
   
@@ -56,16 +57,16 @@ class App extends Component {
       );
     }
     return (
-      <div className={classes.App}>
+      <>
         <Cockpit
           title = {this.props.title}
           persons={this.state.persons}
           personShow={this.state.personShow}
           toogled={this.tooglePersonHandler} />
         {persons}
-      </div>
+      </>
     );
   }
 }
 
-export default App;
+export default withClass(App,classes.App);
