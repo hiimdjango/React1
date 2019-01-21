@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+
 import classes from './App.css';
-import Person from './Person/Person';
-import ErrorBoundaries from './ErrorBoundaries/ErrorBoundaries';
+import Persons from '../Persons/Persons';
+import Cockpit from '../Cockpit/Cockpit';
 
 class App extends Component {
   
@@ -37,38 +38,26 @@ class App extends Component {
     this.setState({personShow:!personShown});
   }
   render() {    
-    let person = null;
-    let btnClass ='';
+    let persons = null;
     if (this.state.personShow === true) {
       //Rendering multiple Person component using .map()
-      person = (
+      persons = (
         <div>
-          {this.state.persons.map((person,index) => {
-            return <Person 
-              name={person.name}
-              age={person.age} 
-              click={this.deletePersonHandler.bind(this,index)}
-              key={person.id}
-              changed={(event) => this.changedNameHandler(event,person.id)} />
-          })}
+          <Persons 
+            persons={this.state.persons}
+            clicked={this.deletePersonHandler}
+            changed={this.changedNameHandler} />
         </div>
       );
-      btnClass = classes.Red; 
     }
-
-    const assignedClasses = [];
-    if (this.state.persons.length <= 2)
-      assignedClasses.push(classes.red);
-    if (this.state.persons.length <= 1)
-      assignedClasses.push(classes.bold);
     return (
       <div className={classes.App}>
-        <h1>React Course</h1>
-        <p className={assignedClasses.join(' ')}>This is working!</p>
-        <button 
-            className={btnClass}
-            onClick={this.tooglePersonHandler}>Toggle Person</button>
-        {person}
+        <Cockpit
+          title = {this.props.title}
+          persons={this.state.persons}
+          personShow={this.state.personShow}
+          toogled={this.tooglePersonHandler} />
+        {persons}
       </div>
     );
   }
