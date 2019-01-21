@@ -13,7 +13,8 @@ class App extends Component {
       {id:'1' ,name:"Omar",age:28},
       {id:'2' ,name:"Aymen",age:29}
     ],
-    personShow : false
+    personShow : false,
+    toogleClicked:0
   }
   //Remove an element from the state.persons using it's index
   deletePersonHandler = (personIndex) => {
@@ -41,7 +42,9 @@ class App extends Component {
   //Show / Unshow the list of persons
   tooglePersonHandler = () => {
     const personShown = this.state.personShow;
-    this.setState({personShow:!personShown});
+    this.setState((prevState, props) => { return {personShow:!personShown,
+    toogleClicked: prevState.toogleClicked+1}
+    });
   }
   render() {    
     let persons = null;
